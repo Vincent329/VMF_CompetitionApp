@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.ARSubsystems::UnityEngine.XR.ARSubsystems.XRReferenceObjectLibrary
   m_GuidLow: 5304090832968377852
   m_GuidHigh: 11790049735182121918
-  m_ReferenceObjects: []
+  m_ReferenceObjects:
+  - m_GuidLow: 4839964648309519501
+    m_GuidHigh: 293819200328799117
+    m_Name: 
+    m_Entries: []
