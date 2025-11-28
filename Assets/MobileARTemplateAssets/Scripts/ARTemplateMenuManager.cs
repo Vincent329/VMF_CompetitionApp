@@ -232,6 +232,7 @@ namespace UnityEngine.XR.Templates.AR
             m_CancelButton.onClick.AddListener(HideMenu);
             m_DeleteButton.onClick.AddListener(DeleteFocusedObject);
             m_PlaneManager.trackablesChanged.AddListener(OnPlaneChanged);
+            Debug.Log("ENABLE TEMPLATE MENU MANAGER");
         }
 
         /// <summary>
@@ -244,6 +245,8 @@ namespace UnityEngine.XR.Templates.AR
             m_CancelButton.onClick.RemoveListener(HideMenu);
             m_DeleteButton.onClick.RemoveListener(DeleteFocusedObject);
             m_PlaneManager.trackablesChanged.RemoveListener(OnPlaneChanged);
+            Debug.Log("DISABLE TEMPLATE MENU MANAGER");
+
         }
 
         /// <summary>
