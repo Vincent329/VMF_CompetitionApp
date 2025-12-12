@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: MultiImageLibrary
+  m_EditorClassIdentifier: Unity.XR.ARSubsystems::UnityEngine.XR.ARSubsystems.XRReferenceImageLibrary
+  m_GuidLow: 5238133850733108643
+  m_GuidHigh: 7890266253794190735
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4877080905491350673
+      m_GuidHigh: 12514594511949899704
+    m_SerializedTextureGuid:
+      m_GuidLow: 4923574526178592407
+      m_GuidHigh: 16837360618735212041
+    m_Size: {x: 0.21, y: 0.21}
+    m_SpecifySize: 1
+    m_Name: panzerotti
+    m_Texture: {fileID: 2800000, guid: 020986970cf244540916dd4a4652aae9, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5470213820606481043
+      m_GuidHigh: 5187395065402960013
+    m_SerializedTextureGuid:
+      m_GuidLow: 14737010203082681842
+      m_GuidHigh: 16208841959565287627
+    m_Size: {x: 0.21, y: 0.21}
+    m_SpecifySize: 1
+    m_Name: holiday
+    m_Texture: {fileID: 2800000, guid: 1e0cedf260b3cc84cbe05554e25ff1e0, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5678229034226313488
+      m_GuidHigh: 14113840832621517701
+    m_SerializedTextureGuid:
+      m_GuidLow: 8652693226708775643
+      m_GuidHigh: 551869127892809386
+    m_Size: {x: 0.21, y: 0.21}
+    m_SpecifySize: 1
+    m_Name: rice
+    m_Texture: {fileID: 2800000, guid: 5067b2db8aa57814aa368e420ca2a807, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4969424856277463419
+      m_GuidHigh: 18146989966257043355
+    m_SerializedTextureGuid:
+      m_GuidLow: 10805352521505411053
+      m_GuidHigh: 2199269644927177818
+    m_Size: {x: 0.21, y: 0.21}
+    m_SpecifySize: 1
+    m_Name: croissant
+    m_Texture: {fileID: 2800000, guid: 7d338fed52de95f45a142fff1660851e, type: 3}
