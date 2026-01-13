@@ -69,13 +69,13 @@ public class ARMultiTrackedImageController : MonoBehaviour
             }
 
         }
-        else
-        {
-            foreach (var foodItem in m_spawnedFoodItems)
-            {
-                foodItem?.SetActive(false);
-            }
-        }
+        //else
+        //{
+        //    foreach (var foodItem in m_spawnedFoodItems)
+        //    {
+        //        foodItem?.SetActive(false);
+        //    }
+        //}
     }
 
     void OnChangeTrackingState(ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
@@ -91,10 +91,10 @@ public class ARMultiTrackedImageController : MonoBehaviour
         }
         foreach(var trackedImage in eventArgs.removed)
         {
-            foreach (var foodItem in m_spawnedFoodItems)
-            {
-                foodItem.SetActive(false);
-            }
+            //foreach (var foodItem in m_spawnedFoodItems)
+            //{
+            //    foodItem.SetActive(false);
+            //}
         }
     }
 }
