@@ -32,7 +32,7 @@ public class ufoLand : MonoBehaviour
 		if(GlobalVar2.dockIndex > 0)
 		{
 			/* GameObject.FindWithTag("JIP").transform.Translate(0, 0.1f*dirIndex*Time.deltaTime, 0); */
-			GameObject.FindWithTag("heart").transform.Rotate(0, 1.5f, 0, Space.World);
+			// GameObject.FindWithTag("heart").transform.Rotate(0, 1.5f, 0, Space.World);
 			GameObject.FindWithTag("jip").transform.Translate(0, 0.1f*dirIndex*Time.deltaTime, 0);
 			GameObject.FindWithTag("adorabilis").transform.Rotate(2f*dirIndexRot*Time.deltaTime, 0, 0);
 			GameObject.FindWithTag("adorabilis").transform.Translate(0, 0, 0.02f*dirIndexRot*Time.deltaTime);

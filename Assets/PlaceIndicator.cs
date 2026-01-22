@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -16,6 +17,27 @@ public class PlaceIndicator : MonoBehaviour
 	private ARRaycastManager raycastManager;
 	private GameObject indicator;
 	private List<ARRaycastHit> hits = new List<ARRaycastHit> ();
+
+	private PlayerInput playerInput;
+
+	private InputAction touchPressAction;
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+		touchPressAction = playerInput.actions["Click"];
+    }
+
+    private void OnEnable()
+    {
+		touchPressAction.performed += TouchPressed;
+    }
+
+    private void OnDisable()
+    {
+		touchPressAction.performed -= TouchPressed;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +56,7 @@ public class PlaceIndicator : MonoBehaviour
     {
 		//var ray2 = new Vector2(Screen.width/2f, Screen.height/2f);
 		
-		if(waitIndex > 2000f || Input.GetMouseButtonDown(0))
+		if(waitIndex > 2000f)
 		{
 			GameObject.FindWithTag("panel1").transform.localScale = new Vector3(0, 0, 0);
 		}
@@ -74,4 +96,9 @@ public class PlaceIndicator : MonoBehaviour
 		}
 		
 	}
+
+	private void TouchPressed(InputAction.CallbackContext context)
+	{
+        GameObject.FindWithTag("panel1").transform.localScale = new Vector3(0, 0, 0);
+    }
 }
