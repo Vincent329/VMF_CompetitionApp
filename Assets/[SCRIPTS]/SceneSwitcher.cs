@@ -9,6 +9,6 @@ public class SceneSwitcher : MonoBehaviour
     }
     public void SwitchtoQR()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("QRScene");
     }
 }

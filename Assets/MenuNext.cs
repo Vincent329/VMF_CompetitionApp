@@ -11,7 +11,7 @@ public class MenuNext : MonoBehaviour {
 		GlobalVar2.dockIndex = 0;
 		GlobalVar.nextIndex = 1;
 		GlobalVar.visionIndex = 0;
-		SceneManager.LoadScene(0); /* Default: 1 */
+		SceneManager.LoadScene("TMU"); /* Default: 1 */
 		/* Application.LoadLevel(1); */
 	}
 }
