@@ -13,6 +13,8 @@ public class ARMultiTrackedImageController : MonoBehaviour
     private List<GameObject> foodPrefabs;
     private List<GameObject> m_spawnedFoodItems = new List<GameObject>();
 
+    bool b_SiteMapPlaced = false;
+
     [SerializeField]
     [Tooltip("The camera to set on the world space UI canvas for each instantiated image info.")]
     Camera m_WorldSpaceCanvasCamera;
@@ -52,6 +54,11 @@ public class ARMultiTrackedImageController : MonoBehaviour
       
     }
 
+    async Task SpawnItem(ARTrackedImage aRTrackedImage)
+    {
+
+    }
+
     async Task UpdateInfo(ARTrackedImage trackedImage)
     {
         if (trackedImage.trackingState != TrackingState.None)
@@ -64,7 +71,7 @@ public class ARMultiTrackedImageController : MonoBehaviour
                 if (trackedImage.referenceImage.name + "(Clone)" == foodItem.name)
                 {
                     foodItem.SetActive(true);
-                    foodItem.transform.SetPositionAndRotation(trackedImage.transform.position, trackedImage.transform.rotation);
+                    UpdatePosition(trackedImage, foodItem);
                 }
             }
 
@@ -76,6 +83,11 @@ public class ARMultiTrackedImageController : MonoBehaviour
         //        foodItem?.SetActive(false);
         //    }
         //}
+    }
+
+    private static void UpdatePosition(ARTrackedImage trackedImage, GameObject foodItem)
+    {
+        foodItem.transform.SetPositionAndRotation(trackedImage.transform.position, trackedImage.transform.rotation);
     }
 
     void OnChangeTrackingState(ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
