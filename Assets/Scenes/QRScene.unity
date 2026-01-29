@@ -2561,9 +2561,9 @@ MonoBehaviour:
   - {fileID: 8084073421078037178, guid: 9c0717c2f9bedb748831710449273615, type: 3}
   - {fileID: 5280610105111060358, guid: 372e4ed79fb89434aab3b6bf5bcc20d8, type: 3}
   - {fileID: 5599359233644159114, guid: eea9940a4933d974a959672a77653caf, type: 3}
-  staticPrefabsList:
   - {fileID: 3682629298661153190, guid: 51629740129cadf40b95f6505a747946, type: 3}
   m_WorldSpaceCanvasCamera: {fileID: 2512387469332387782}
+  sitePlan: {fileID: 3682629298661153190, guid: 51629740129cadf40b95f6505a747946, type: 3}
 --- !u!1 &2512387470665874425
 GameObject:
   m_ObjectHideFlags: 0

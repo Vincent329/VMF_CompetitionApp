@@ -13,16 +13,16 @@ public class ARMultiTrackedImageController : MonoBehaviour
     private List<GameObject> foodPrefabs;
     private HashSet<GameObject> m_spawnedFoodItems = new HashSet<GameObject>();
 
-    // for STATIC objects
-    [SerializeField]
-    private List<GameObject> staticPrefabsList;
-    private HashSet<GameObject> m_StaticPrefabs = new HashSet<GameObject>();
-
-
-
     [SerializeField]
     [Tooltip("The camera to set on the world space UI canvas for each instantiated image info.")]
     Camera m_WorldSpaceCanvasCamera;
+
+    [SerializeField]
+    private GameObject sitePlan;
+
+    // reference to the AR session in the world
+    [SerializeField]
+    private ARSession arSession;
 
     /// <summary>
     /// The prefab has a world space UI canvas,
@@ -38,9 +38,14 @@ public class ARMultiTrackedImageController : MonoBehaviour
     {
         m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
         m_WorldSpaceCanvasCamera = GetComponentInChildren<Camera>();
-        
     }
 
+    private void Start()
+    {
+        arSession = FindFirstObjectByType<ARSession>();
+        arSession.requestedTrackingMode = TrackingMode.PositionAndRotation;
+
+    }
     private void OnEnable()
     {
         m_TrackedImageManager.trackablesChanged.AddListener(OnChangeTrackingState);
@@ -49,13 +54,6 @@ public class ARMultiTrackedImageController : MonoBehaviour
             var spawnedItem = Instantiate<GameObject>(food);
             spawnedItem.SetActive(false);
             m_spawnedFoodItems.Add(spawnedItem);
-        }
-
-        foreach (var staticItem in staticPrefabsList)
-        {
-            var spawnedItem = Instantiate<GameObject>(staticItem);
-            spawnedItem.SetActive(false);
-            m_StaticPrefabs.Add(spawnedItem);
         }
  
     }
@@ -66,49 +64,33 @@ public class ARMultiTrackedImageController : MonoBehaviour
       
     }
 
-    async Task SpawnItem(ARTrackedImage aRTrackedImage)
-    {
-        if (aRTrackedImage.trackingState != TrackingState.None)
-        {
-
-            // The image extents is only valid when the image is being tracked
-            aRTrackedImage.transform.localScale = new Vector3(aRTrackedImage.size.x, 1f, aRTrackedImage.size.y);
-
-            foreach (var foodItem in m_spawnedFoodItems)
-            {
-                if (aRTrackedImage.referenceImage.name + "(Clone)" == foodItem.name)
-                {
-                    foodItem.SetActive(true);
-                }
-            }
-
-            foreach (var staticItem in m_StaticPrefabs)
-            {
-                if (aRTrackedImage.referenceImage.name + "(Clone)" == staticItem.name)
-                {
-                    staticItem.SetActive(true);
-                    Quaternion standingRotation = Quaternion.Euler(0.0f, aRTrackedImage.transform.rotation.y, 0.0f);
-                    staticItem.transform.SetPositionAndRotation(aRTrackedImage.transform.position, standingRotation);
-                }
-            }
-        }
-    }
-
     async Task UpdateInfo(ARTrackedImage trackedImage)
     {
-        if (trackedImage.trackingState != TrackingState.None)
+        //Debug.Log(trackedImage.referenceImage.name + " Tracking State: " + trackedImage.trackingState);
+
+        if (trackedImage.trackingState == TrackingState.Tracking)
         {
             // The image extents is only valid when the image is being tracked
-            //trackedImage.transform.localScale = new Vector3(trackedImage.size.x, 1f, trackedImage.size.y);
+            // trackedImage.transform.localScale = new Vector3(trackedImage.size.x, 1f, trackedImage.size.y);
 
             foreach (var foodItem in m_spawnedFoodItems)
             {
                 if (trackedImage.referenceImage.name + "(Clone)" == foodItem.name)
                 {
                     foodItem.SetActive(true);
-
-                    UpdatePosition(trackedImage, foodItem);
+                    foodItem.transform.SetParent(trackedImage.transform);
+                    foodItem.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
                    
+                }
+            }
+        }
+        else 
+        {
+            foreach (var foodItem in m_spawnedFoodItems)
+            {
+                if (trackedImage.referenceImage.name + "(Clone)" == foodItem.name)
+                {
+                    foodItem.transform.parent = null;
                 }
             }
         }
@@ -123,8 +105,7 @@ public class ARMultiTrackedImageController : MonoBehaviour
     {
         foreach(ARTrackedImage trackedImage in eventArgs.added)
         {
-            trackedImage.transform.localScale = new Vector3(0.01f, 1f, 0.01f);
-            Debug.Log("Marker added");
+            //trackedImage.transform.localScale = new Vector3(0.01f, 1f, 0.01f);
             UpdateInfo(trackedImage);
         }
         foreach (ARTrackedImage trackedImage in eventArgs.updated)
