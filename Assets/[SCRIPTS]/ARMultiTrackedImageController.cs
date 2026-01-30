@@ -24,6 +24,9 @@ public class ARMultiTrackedImageController : MonoBehaviour
     [SerializeField]
     private ARSession arSession;
 
+    [SerializeField]
+    private ARAnchorManager m_AnchorManager;
+
     /// <summary>
     /// The prefab has a world space UI canvas,
     /// which requires a camera to function properly.
@@ -38,6 +41,7 @@ public class ARMultiTrackedImageController : MonoBehaviour
     {
         m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
         m_WorldSpaceCanvasCamera = GetComponentInChildren<Camera>();
+        m_AnchorManager = GetComponent<ARAnchorManager>();
     }
 
     private void Start()
@@ -78,9 +82,10 @@ public class ARMultiTrackedImageController : MonoBehaviour
                 if (trackedImage.referenceImage.name + "(Clone)" == foodItem.name)
                 {
                     foodItem.SetActive(true);
+
+                    
                     foodItem.transform.SetParent(trackedImage.transform);
-                    foodItem.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                   
+                    UpdatePosition(trackedImage, foodItem);                   
                 }
             }
         }
@@ -90,7 +95,7 @@ public class ARMultiTrackedImageController : MonoBehaviour
             {
                 if (trackedImage.referenceImage.name + "(Clone)" == foodItem.name)
                 {
-                    foodItem.transform.parent = null;
+                    foodItem.transform.parent = null;   
                 }
             }
         }

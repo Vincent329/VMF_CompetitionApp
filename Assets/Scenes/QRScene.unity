@@ -2534,6 +2534,7 @@ GameObject:
   - component: {fileID: 2512387470231460709}
   - component: {fileID: 683147691}
   - component: {fileID: 2512387470231460731}
+  - component: {fileID: 2512387470231460732}
   m_Layer: 0
   m_Name: XR Origin (AR Rig) CUSTOM
   m_TagString: Untagged
@@ -2564,6 +2565,24 @@ MonoBehaviour:
   - {fileID: 3682629298661153190, guid: 51629740129cadf40b95f6505a747946, type: 3}
   m_WorldSpaceCanvasCamera: {fileID: 2512387469332387782}
   sitePlan: {fileID: 3682629298661153190, guid: 51629740129cadf40b95f6505a747946, type: 3}
+  arSession: {fileID: 0}
+  m_AnchorManager: {fileID: 0}
+--- !u!114 &2512387470231460732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512387470231460730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728ad7fae8e460a4ba41265c7308d757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.ARFoundation::UnityEngine.XR.ARFoundation.ARAnchorManager
+  <trackablesChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  m_AnchorPrefab: {fileID: 3125165527598978782, guid: 779f5eab1277241d6b58ee2c44909b20, type: 3}
 --- !u!1 &2512387470665874425
 GameObject:
   m_ObjectHideFlags: 0
