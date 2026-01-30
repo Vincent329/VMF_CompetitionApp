@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/QRScene.unity
+    path: Assets/MIGRATION PACKAGE/Scenes/QRScene.unity
     guid: 4755b35b590504809a7525fd2109c2e2
   - enabled: 1
-    path: Assets/TMU.unity
+    path: Assets/MIGRATION PACKAGE/Scenes/TMU.unity
     guid: e7464b1cb9a3d7e4587b2c24f6458385
   - enabled: 0
     path: Assets/Samples/XR Interaction Toolkit/3.2.1/AR Starter Assets/ARDemoScene.unity
