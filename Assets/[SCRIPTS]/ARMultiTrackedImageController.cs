@@ -21,12 +21,16 @@ public class ARMultiTrackedImageController : MonoBehaviour
     private GameObject sitePlan;
 
     // reference to the AR session in the world
-    [SerializeField]
     private ARSession arSession;
 
-    [SerializeField]
     private ARAnchorManager m_AnchorManager;
 
+    private ARPlaneManager m_PlaneManager;
+
+    [SerializeField]
+    private AudioSource pingSource;
+    [SerializeField]
+    private AudioClip ping;
     /// <summary>
     /// The prefab has a world space UI canvas,
     /// which requires a camera to function properly.
@@ -42,6 +46,8 @@ public class ARMultiTrackedImageController : MonoBehaviour
         m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
         m_WorldSpaceCanvasCamera = GetComponentInChildren<Camera>();
         m_AnchorManager = GetComponent<ARAnchorManager>();
+        m_PlaneManager = GetComponent<ARPlaneManager>();
+        pingSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -53,6 +59,7 @@ public class ARMultiTrackedImageController : MonoBehaviour
     private void OnEnable()
     {
         m_TrackedImageManager.trackablesChanged.AddListener(OnChangeTrackingState);
+
         foreach (var food in foodPrefabs)
         {
             var spawnedItem = Instantiate<GameObject>(food);
@@ -83,19 +90,19 @@ public class ARMultiTrackedImageController : MonoBehaviour
                 {
                     foodItem.SetActive(true);
 
-                    
                     foodItem.transform.SetParent(trackedImage.transform);
                     UpdatePosition(trackedImage, foodItem);                   
                 }
             }
         }
-        else 
+        else if (trackedImage.trackingState == TrackingState.Limited) // problem on phone, this will always get called
         {
             foreach (var foodItem in m_spawnedFoodItems)
             {
                 if (trackedImage.referenceImage.name + "(Clone)" == foodItem.name)
                 {
-                    foodItem.transform.parent = null;   
+                    foodItem.transform.parent = null;
+                    pingSource.PlayOneShot(ping );
                 }
             }
         }
@@ -117,13 +124,14 @@ public class ARMultiTrackedImageController : MonoBehaviour
         {
             UpdateInfo(trackedImage);
         }
-        foreach(var trackedImage in eventArgs.removed)
+        foreach (var trackedImage in eventArgs.removed)
         {
             Debug.Log("Lost Marker");
             //foreach (var foodItem in m_spawnedFoodItems)
             //{
             //    foodItem.SetActive(false);
             //}
+          
         }
     }
 }
