@@ -2535,6 +2535,7 @@ GameObject:
   - component: {fileID: 683147691}
   - component: {fileID: 2512387470231460731}
   - component: {fileID: 2512387470231460732}
+  - component: {fileID: 2512387470231460733}
   m_Layer: 0
   m_Name: XR Origin (AR Rig) CUSTOM
   m_TagString: Untagged
@@ -2583,6 +2584,23 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AnchorPrefab: {fileID: 3125165527598978782, guid: 779f5eab1277241d6b58ee2c44909b20, type: 3}
+--- !u!114 &2512387470231460733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512387470231460730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.ARFoundation::UnityEngine.XR.ARFoundation.ARPlaneManager
+  <trackablesChanged>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlanePrefab: {fileID: 1659817483611612748, guid: 1316ebad952ac94478d83d83a56e95cc, type: 3}
+  m_DetectionMode: -1
 --- !u!1 &2512387470665874425
 GameObject:
   m_ObjectHideFlags: 0
